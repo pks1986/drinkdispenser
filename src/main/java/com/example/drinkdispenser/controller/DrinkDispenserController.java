@@ -42,6 +42,16 @@ public class DrinkDispenserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage());
         }
     }
+    
+    @PostMapping("/addDrink/{drinkCode}/{drinkName}/{price}")
+    public ResponseEntity<String> addDrink(
+            @PathVariable String drinkCode,
+            @PathVariable String drinkName,
+            @PathVariable int price) {
+        drinkDispenserService.addDrink(drinkCode, drinkName, price);
+        logRequest("POST", "/addDrink/" + drinkCode + "/" + drinkName + "/" + price);
+        return ResponseEntity.ok("Drink added: " + drinkName + " - $" + price / 100.0);
+    }
 
     @GetMapping("/displayStock")
     public String displayStock() {

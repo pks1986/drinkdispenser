@@ -97,6 +97,10 @@ public class DrinkDispenserService {
 		}
 		return response.toString();
 	}
+	
+	public void addDrink(String drinkCode, String drinkName, int price) {
+        availableDrinks.put(drinkCode, new Drink(drinkName, price));
+    }
 
 	public String displayStatus() {
 		return "Current Balance: " + currentBalance + " cents";
